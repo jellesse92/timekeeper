@@ -1,0 +1,30 @@
+﻿<Window x:Class="inTime.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:inTime"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="800" Topmost="True">
+    <Grid x:Name="Window_Layout_Grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Button x:Name="createNew" Height="60" Width="200" Margin="10" Content="New Activity" Click="createNew_Click"/>
+            <Button x:Name="startActivity" Height="60" Width="200" Margin="10" Content="Start Activity" Click="startActivity_Click"/>
+            <Button x:Name="endActivity" Height="60" Width="200" Margin="10,10,13,10" Content="End Activity" Click="endActivity_Click"/>
+        </StackPanel>
+        <ListBox Grid.Row="0" Grid.Column="1" Margin="21,20,20,36" Width="500" Background="White" SelectionChanged="ListBox_SelectionChanged">
+            <ListBoxItem x:Name="testActivity" Tag="Activity" Content="Activity 1"/>
+            <ListBoxItem x:Name="testActivity2" Tag="Activity" Content="Activity 2"/>
+            <ListBoxItem x:Name="noActivities" Tag="Something" Content="No Activities Added" IsEnabled="False"></ListBoxItem>
+        </ListBox>
+    </Grid>
+
+</Window>
+
