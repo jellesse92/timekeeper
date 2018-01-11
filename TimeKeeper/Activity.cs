@@ -16,6 +16,7 @@ namespace inTime.TimeKeeper
     {
         public string name;
         public string category;
+        public bool isActive;
 
         protected Stack<ActivityEvent> events;
 
@@ -48,28 +49,26 @@ namespace inTime.TimeKeeper
             events.Pop();
         }
 
-        public bool createEvent()
+        public void createEvent()
         {
-            if (events.Count == 0 || events.Peek().stop > events.Peek().start)
+            if (!isActive)
             {
                 ActivityEvent newEvent = new ActivityEvent();
                 newEvent.start = DateTime.Now;
                 events.Push(newEvent);
-                return true;
+                isActive = true;
             }
-            return false;
         }
 
-        public bool endEvent()
+        public void endEvent()
         {
-            if (events.Count > 0 && events.Peek().stop < events.Peek().start)
+            if (isActive)
             {
                 ActivityEvent currentEvent = events.Pop();
                 currentEvent.stop = DateTime.Now;
                 events.Push(currentEvent);
-                return true;
+                isActive = false;
             }
-            return false;
         }
 
 
