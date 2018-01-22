@@ -7,26 +7,45 @@ using System.Threading.Tasks;
 namespace inTime.TimeKeeper
 {
     public struct ActivityEvent
-    {
+    { 
+        public Guid user { get; set; }
+        public int activityID { get; set; }
         public DateTime start { get; set; } 
         public DateTime stop { get; set; }
     }
 
     class Activity
     {
-        public string name;
-        public string category;
-        public bool isActive;
+        public Guid user { get; private set; }
+        public int id { get; private set; }
+        public string name { get; set; }
+        public string category { get; set; }
+        public Stack<ActivityEvent> events { get; private set; }
 
-        protected Stack<ActivityEvent> events;
+        private bool isActive = false;
 
-        private Guid id;
-        private Guid user;
 
+        public Activity(int id)
+        {
+            this.id = id;
+            loadActivity(this.id);
+            
+        }
         public Activity(string name ="", string category = "")
         {
             this.name = name;
             this.category = category;
+            this.events = new Stack<ActivityEvent>();
+        }
+
+        private void saveActivity()
+        {
+            
+        }
+
+        private void loadActivity(int id)
+        {
+
         }
 
         public void changeActivityName(string name)
@@ -54,6 +73,7 @@ namespace inTime.TimeKeeper
             if (!isActive)
             {
                 ActivityEvent newEvent = new ActivityEvent();
+                newEvent.activityID = this.id;
                 newEvent.start = DateTime.Now;
                 events.Push(newEvent);
                 isActive = true;

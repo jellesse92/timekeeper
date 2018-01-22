@@ -23,7 +23,19 @@ namespace inTime
         
         public MainWindow()
         {
+
+            Console.Write("hi");
+            TimeKeeper.FileController fc = new TimeKeeper.FileController();
+            TimeKeeper.Activity newAct = new TimeKeeper.Activity();
+            newAct.name = "Jasmine Activity";
+            newAct.category = "Lazy Time";
+            fc.writeActivity(newAct);
+            newAct.name = "Another Activity";
+
+            fc.writeActivity(newAct);
+            Console.ReadLine();
             InitializeComponent();
+            
         }
 
         private void createNew_Click(object sender, RoutedEventArgs e)
